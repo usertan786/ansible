@@ -1,0 +1,7 @@
+- name: sample playbook
+  hosts: all
+  remote_user: ec2-user
+  tasks: 
+  - name: print the message
+    debug:
+      msg: "hello cdecb12 batch"

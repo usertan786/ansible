@@ -1,0 +1,17 @@
+- name: hostname example
+  hosts: all
+  remote_user: ec2-user
+  #gather_facts: false    #### this is used to disable facts gathering 
+  tasks: 
+  - name: distribution name  
+    debug:
+      msg: "the distribution name is {{ansible_distribution}}"
+
+
+  - name:  gather hostname of hosts
+    ansible.builtin.shell: hostname
+    register: HOST           ####### this variable is used to store the output of the current task and can be used in another task to print the output 
+
+  - name: print hostname 
+    debug:   
+      msg: "The hostname is {{HOST.stdout}}"   

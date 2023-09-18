@@ -1,0 +1,12 @@
+- name: output example
+  hosts: all
+  remote_user: ec2-user
+  #gather_facts: false
+  tasks: 
+  - name: distribution name  
+    debug:
+      msg: "the distribution name is {{ansible_distribution}}"
+  - name: IP address of hosts 
+    debug: 
+      msg: "the ip address is {{ansible_default_ipv4.address}}"
+

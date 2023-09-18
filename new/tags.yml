@@ -1,0 +1,20 @@
+- name: tags playbook
+  hosts: all
+  remote_user: ec2-user
+  tasks: 
+  - name: print the hello msg
+    debug:
+      msg: "hello cdecb12 batch"
+    tags: tag1
+  - name: print the name
+    debug:
+      msg: "i am tanmay"
+    tags: tag2
+  - name: print the cloudblitz
+    debug:
+      msg: "welcome to cloudblitz"
+    tags: tag3
+  - name: print the location
+    debug:
+      msg: "welcome to nagpur"
+    tags: location

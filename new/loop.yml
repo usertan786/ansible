@@ -1,0 +1,22 @@
+- name: loop playbook
+  hosts: all
+  remote_user: ec2-user
+  tasks: 
+  - name: print the fruits 
+    debug:
+      msg: "{{item}}"
+    loop: 
+    - "mango"
+    - "banana"
+    - "apple"
+    - "pineapple"
+    - "grapes"
+  # - name: print the fruits 
+  #   debug:
+  #     msg: "banana"
+  # - name: print the fruits 
+  #   debug:
+  #     msg: "apple"
+  # - name: print the fruits 
+  #   debug:
+  #     msg: "pineapple"

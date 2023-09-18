@@ -1,0 +1,13 @@
+- name: sample playbook
+  hosts: all
+  become: true   #### act as a sudo user
+  remote_user: ec2-user
+  tasks: 
+  - name: install httpd
+    package:
+      name: httpd
+      state: present
+  - name: install tree
+    package:
+      name: tree
+      state: present  

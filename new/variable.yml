@@ -1,0 +1,22 @@
+- name: variable example
+  hosts: all
+  remote_user: ec2-user
+  vars:                  ### Global variable ###
+   URL: global.google.com
+
+  vars_files:             ### File variable ####
+  - "../ansible.var"
+
+  vars_prompt:            ### Prompt variable ###
+  - name: URL
+    prompt: Please insert your website name
+    private: false
+  tasks: 
+  - name: google website
+    vars:
+      URL: local.google.com   ### Local variable ###
+    debug:
+      msg: "{{URL}}"
+  - name: search engine 
+    debug: 
+      msg: "{{URL}}"
