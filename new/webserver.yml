@@ -1,0 +1,22 @@
+- name: host a webserver
+  hosts: all
+  become: true
+  tasks: 
+  - name: install/ update httpd package
+    package: 
+      name: httpd
+      state: present
+  - name: create or copy index.html 
+    copy:
+      src: /home/ec2-user/index.html
+      dest: /var/www/html/index.html
+  - name: change in configuration
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf 
+      regexp: "^Listen 80"
+      line: "Listen 80"
+
+  - name: start the httpd service
+    service: 
+      name: httpd
+      state: restarted
