@@ -1,0 +1,30 @@
+- name: appserver playbook
+  hosts: all
+  become: true
+  vars_files:
+  - "../env.var"
+
+
+  tasks:
+  - name: install java package 
+    package: 
+      name: java-11
+      state: present
+
+  - name: download the tomcat 
+    get_url:
+      url: "{{TOMCAT_URL}}"
+      dest: /opt/
+  - name: extract the tomcat file
+    unarchive: 
+      src: "{{TOMCAT_ZIP}}"
+      dest: /opt/
+      remote_src: true
+
+  - name: download the student.war file
+    get_url: 
+      url: "{{STUDENT_URL}}"
+      dest: "{{FILE_PATH}}/webapps"
+
+  - name: start the catalina.sh
+    shell: "nohup {{FILE_PATH}}/bin/catalina.sh start"
